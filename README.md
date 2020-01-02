@@ -88,10 +88,79 @@ The C++ controller is located at `cpp/src/mav_deepControl.cpp` with weights in `
 
 * [Linearized Dynamics of the Quadrotor](https://www.kth.se/polopoly_fs/1.588039.1550155544!/Thesis%20KTH%20-%20Francesco%20Sabatino.pdf)
 
-Values of the plant for F450
+
+## Installation
+
+**Requirements** 
+    ROS-Kinetic, catkin tools, Eigen3
+
+1. Install [catkin tools](https://catkin-tools.readthedocs.io/en/latest/installing.html)
+   ```sh
+    $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
+    $ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+   ```
+2. Clone the deepControl repository
+   ```sh
+   git clone https://github.com/pratyusv/deepControl.git
+   cd ./deepControl
+   git submodule update --init --recursive
+   ```
+3. Build the catkin workspace
+   ```sh
+   catkin build
+   ``` 
+
+### Usage
+
+Ensure that the ros environment is included in the bash profile of the shell. If it is not included add to `~/.bashrc`
+```
+source /opt/ros/kinetic/setup.sh
+```
+
+Go to the catkin workspace of the deepControl folder.
+```sh
+cd ./deepControl/catkin_ws/src
+```
+All the terminals in the below step are created from the above path.
+
+1. Launch the `rotors_simulator` in the terminal
+    ```sh
+    roslaunch rotors_gazebo mav.launch mav_name:=f450
+    ```
+    Unpause the physics of the gazebo by clicking on the play button.
+
+2. In a new Terminal launch the Non-Linear MPC controller:
+    ```sh
+    roslaunch mav_nonlinear_mpc mav_nonlinear_mpc_sim.launch mav_name:=f450
+    ```
+
+    The mpc commands are intially published on the topic: `/f450/command/roll_pitch_yawrate_thrust`. We remap these controls to topic `/f450/rpyth`. These frees up the `/f450/command/roll_pitch_yawrate_thrust` topic to publish the DNN controlls.
+
+    This remapping is done in the [mav_nonlinear_mpc_sim.launch](./catkin_ws/src/mav_control_rw/mav_nonlinear_mpc/launch/mav_nonlinear_mpc_sim.launch) file.
+
+    ```xml
+    <remap from="command/roll_pitch_yawrate_thrust" to="rpyth"/>
+    ```
+
+3. In a new terminal run the trajectory generator.
+    ```sh
+     roslaunch mav_trajectory_generation_ros my_node.launch mav_name:=f450
+    ```
+4. In a new terminal run the DNN controller.
+   ```sh
+    cd ./dnn_mpc
+    python follow_xy.py
+   ```
+5. In a new terminal kill the tracker rosnode. The quadorotor will start following the trajectory once the tracker node is killed.
+    ```sh
+    rosnode kill /f450/trackin_node
+    ```
+
+
+<!-- Values of the plant for F450
 * inertia : [ 0.0337 , 0.000000 , 0.000000 , 0.000000 , 0.0337 , 0.000000 , 0.000000 , 0.000000 , 0.0185]
 * rotors: 4
 
 * rotor_force_constant: 8.54858e-6
 * rotor_moment_constant: 0.016000
-* arm_length: 0.225
+* arm_length: 0.225 -->
