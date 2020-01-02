@@ -1,0 +1,1 @@
+mv *.bag ../../../resultPlots/mav_system_identification/mav_sysid_prat/currBags/

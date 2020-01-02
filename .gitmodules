@@ -1,0 +1,33 @@
+[submodule "catkin_ws/src/catkin_simple"]
+	path = catkin_ws/src/catkin_simple
+	url = https://github.com/catkin/catkin_simple.git
+[submodule "catkin_ws/src/eigen_catkin"]
+	path = catkin_ws/src/eigen_catkin
+	url = https://github.com/ethz-asl/eigen_catkin.git
+[submodule "catkin_ws/src/eigen_checks"]
+	path = catkin_ws/src/eigen_checks
+	url = https://github.com/ethz-asl/eigen_checks.git
+[submodule "catkin_ws/src/glog_catkin"]
+	path = catkin_ws/src/glog_catkin
+	url = https://github.com/ethz-asl/glog_catkin.git
+[submodule "catkin_ws/src/mav_comm"]
+	path = catkin_ws/src/mav_comm
+	url = https://github.com/ethz-asl/mav_comm.git
+[submodule "catkin_ws/src/mav_control_rw"]
+	path = catkin_ws/src/mav_control_rw
+	url = https://github.com/pratyusv/mav_control_rw.git
+[submodule "catkin_ws/src/mavlink"]
+	path = catkin_ws/src/mavlink
+	url = https://github.com/mavlink/mavlink.git
+[submodule "catkin_ws/src/mavros"]
+	path = catkin_ws/src/mavros
+	url = https://github.com/ethz-asl/mavros.git
+[submodule "catkin_ws/src/mav_trajectory_generation"]
+	path = catkin_ws/src/mav_trajectory_generation
+	url = https://github.com/pratyusv/mav_trajectory_generation.git
+[submodule "catkin_ws/src/nplot"]
+	path = catkin_ws/src/nplot
+	url = https://github.com/nplot/nplot.git
+[submodule "catkin_ws/src/rotors_simulator"]
+	path = catkin_ws/src/rotors_simulator
+	url = https://github.com/pratyusv/rotors_simulator.git

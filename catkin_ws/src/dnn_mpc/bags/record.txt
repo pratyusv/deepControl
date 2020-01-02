@@ -1,0 +1,6 @@
+rosbag record -O rect_dnn.bag /f450/command/current_reference /f450/ground_truth/odometry  /f450/command/roll_pitch_yawrate_thrust
+rosbag record -O rect_mpc.bag /f450/command/current_reference /f450/ground_truth/odometry  /f450/command/roll_pitch_yawrate_thrust
+
+
+rosbag record -O firefly_dnn.bag /firefly/command/current_reference /firefly/ground_truth/odometry  /firefly/command/roll_pitch_yawrate_thrust
+rosbag record -O firefly_rect_mpc.bag /firefly/command/current_reference /firefly/ground_truth/odometry  /firefly/command/roll_pitch_yawrate_thrust
