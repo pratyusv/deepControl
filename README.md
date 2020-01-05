@@ -153,7 +153,7 @@ All the terminals in the below step are created from the above path.
    ```
 5. In a new terminal kill the tracker rosnode. The quadorotor will start following the trajectory once the tracker node is killed.
     ```sh
-    rosnode kill /f450/trackin_node
+    rosnode kill /f450/tracking_node
     ```
 
 
